@@ -32,12 +32,12 @@ public class Products{
 	private int id;
 	
 	@NotNull(message = "don't leave this field empty")
-	@Size(min=1,message = "please! don\'t leave this field empty")
+	@Size(min=1,message = "please! don't leave this field empty")
 	@Column(name="product_name")
 	private String productName;
 	
 	@NotNull(message = "don't leave this field empty")
-	@Size(min=1,message = "please! don\'t leave this field empty")
+	@Size(min=1,message = "please! don't leave this field empty")
 	@Column(name="product_specs")
 	private String specs;
 	

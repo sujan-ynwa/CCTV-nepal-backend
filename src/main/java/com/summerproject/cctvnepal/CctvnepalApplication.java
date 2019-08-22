@@ -11,5 +11,4 @@ public class CctvnepalApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CctvnepalApplication.class, args);
 	}
-
 }
