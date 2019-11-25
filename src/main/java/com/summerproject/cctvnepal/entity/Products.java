@@ -41,12 +41,18 @@ public class Products{
 	@Column(name="product_specs")
 	private String specs;
 	
+	@Column(name="company_name")
+	private String companyName;
+	
 	@Column(name = "image_path")
 	private String imagePath;
 	
 	@NotNull(message = "price cannot be empty")
 	@Column(name="price")
 	private Double price;
+	
+	@Column(name="warranty")
+	private String warranty;
 	
 	@Column(name="available")
 	private boolean available;
@@ -63,14 +69,31 @@ public class Products{
 	}
 	
 	// don't change the pattern in which parameter are passed
-	public Products(String productName, String imagePath, Double price,String specs,boolean available) {
+	public Products(String productName,String companyName, String imagePath, Double price,String specs,String warranty,boolean available) {
 		this.productName = productName;
 		this.specs = specs;
 		this.imagePath = imagePath;
 		this.price = price;
+		this.companyName = companyName;
+		this.warranty= warranty;
 		this.available = available;
 	}
+	
+	public String getCompanyName() {
+		return companyName;
+	}
 
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+	public String getWarranty() {
+		return warranty;
+	}
+
+	public void setWarranty(String warranty) {
+		this.warranty = warranty;
+	}
 
 	public boolean isAvailable() {
 		return available;

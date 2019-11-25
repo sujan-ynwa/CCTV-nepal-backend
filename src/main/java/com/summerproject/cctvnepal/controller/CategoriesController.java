@@ -58,6 +58,7 @@ public class CategoriesController {
 		// creating a model attribute to bind form data
 		Categories categories = new Categories();
 		
+		// adding the data to the model
 		theModel.addAttribute("category",categories);
 		
 		return "categories/category-add-form";
@@ -81,7 +82,7 @@ public class CategoriesController {
 		
 		
 		// this is for update
-		// if the file with same name already exists then delete it first and only update
+		// if the file with same name already exists, delete it first then update
 		Path fileToDelete = Paths.get(filePath);
 		if(Files.exists(fileToDelete)) {
 			// deleting the existing file
@@ -103,7 +104,9 @@ public class CategoriesController {
 		      fout.close();
 		}
 	      theCategories.setImagePath(image_url);
+	      // updating  into the database
 	      categoriesService.insertOrUpdate(theCategories);
+	      
 	      return "redirect:/categories/list";	
 		}
 	}
@@ -120,7 +123,7 @@ public class CategoriesController {
 		theModel.addAttribute("category",categories); // model value should be same as the retrieved object in the form
 		
 		
-		//sendig the populated form
+		//sending the populated form
 		return "categories/category-add-form";
 		
 		
@@ -154,7 +157,6 @@ public class CategoriesController {
 				categoriesService.deleteCategory(categoryId);
 		 }
 		 
-		
 		return "redirect:/categories/list";	
 		
 	}

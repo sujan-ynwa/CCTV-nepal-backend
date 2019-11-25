@@ -1,38 +1,43 @@
 <!DOCTYPE>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Home page</title>
-	 <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
-		<!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet"  type="text/css" href="/css/errors.css">
+<title>Home page</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/css/errors.css">
 </head>
 <body>
 	<div class="container">
 		<h2>Create new Category</h2>
-		
+
 		<!--  Form to add new category -->
-		<form action="#" th:action="@{/categories/insert}" 
-						th:object="${category}" method="POST" enctype="multipart/form-data">
-					
-			<!-- this is for the update so that the categories id will be sent along the form  -->	
-			<input type="hidden" th:field="*{id}">
-									
-			<span th:if="${#fields.hasErrors('categoryName')}" th:errors="*{categoryName}" class="error">Name error</span>
-			<input type="text" th:field="*{categoryName}"
+		<form action="#" th:action="@{/categories/insert}"
+			th:object="${category}" method="POST" enctype="multipart/form-data">
+
+			<!-- this is for the update so that the categories id will be sent along the form  -->
+			<input type="hidden" th:field="*{id}"> <span
+				th:if="${#fields.hasErrors('categoryName')}"
+				th:errors="*{categoryName}" class="error">Name error</span> <input
+				type="text" th:field="*{categoryName}"
 				class="form-control mb-4 col-4" placeholder="Category Name">
-			
-			<span th:if="${#fields.hasErrors('categoryCode')}" th:errors="*{categoryCode}" class="error">Name error</span>
-			<input type="text" th:field="*{categoryCode}"
-				class="form-control mb-4 col-4" placeholder="Category Code">	
-			 <input type="file" name="file" id="file">
+
+			<span th:if="${#fields.hasErrors('categoryCode')}"
+				th:errors="*{categoryCode}" class="error">Name error</span> <input
+				type="text" th:field="*{categoryCode}"
+				class="form-control mb-4 col-4" placeholder="Category Code">
+			<input type="file" name="file" id="file">
 			<button type="submit" class="btn btn-info col-2">Add</button>
 		</form>
-		
+
 		<a th:href="@{/categories/list}">Go back to list</a>
-	
+
 	</div>
 
 
