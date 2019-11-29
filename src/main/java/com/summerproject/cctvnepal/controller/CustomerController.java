@@ -30,9 +30,6 @@ public class CustomerController {
 		
 		theModel.addAttribute("customers",thecustomers);
 		
-		Customer customer =customerService.findByEmail("thekopsfc.sd@gmail.com");
-		System.out.println(customer);
-		
 		return "show-customer-list";
 		
 	}

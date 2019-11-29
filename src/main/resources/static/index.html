@@ -1,42 +1,7 @@
 <!DOCTYPE>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Dashboard</title>
-
-<!-- the css  -->
-<link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+<!--   redirecting  to the login form -->
+	 <meta http-equiv='refresh' content='0; URL=http://localhost:8080/loginForm'>
 </head>
-
-<body>
-	<div id="wrapper">
-		<!-- for the side bar  -->
-		<div id="sidebar-wrapper">
-			<ul class="sidebar-nav">
-				<li class="companyname">CCTV Nepal</li>
-				<li><a href="/customer/listAll" target="frame_view">View
-						Customers</a></li>
-				<li><a href="/categories/list" target="frame_view">Categories</a></li>
-				<li><a href="/products/list" target="frame_view">Products</a></li>
-			</ul>
-			<hr color="#ffffff">
-			<ul class="sidebar-nav">
-				<li><a href="/purchase/orders" target="frame_view">Purchase
-						order</a></li>
-				<li><a href="/feedbacks" target="frame_view">Customer
-						Feedback</a></li>
-			</ul>
-		</div>
-
-		<!--  for view part -->
-		<div id="main-view-wrapper">
-			<iframe class="frameview" name="frame_view"></iframe>
-		</div>
-
-
-
-	</div>
-	</div>
-</body>
-
-
 </html>

@@ -23,29 +23,42 @@
 			th:object="${products}" method="POST" enctype="multipart/form-data">
 
 			<!-- this is for the update so that the categories id will be sent along the form  -->
-			<input type="hidden" th:field="*{id}"> <span
+			<input type="hidden" th:field="*{id}"> 
+			<span
 				th:if="${#fields.hasErrors('productName')}"
-				th:errors="*{productName}" class="error">Name error</span> <input
+				th:errors="*{productName}" class="error">Name error</span> 
+				<input
 				type="text" th:field="*{productName}"
-				class="form-control mb-4 col-4" placeholder="Name"> <span
+				class="form-control mb-4 col-4" placeholder="Name"> 
+				
+				<span
 				th:if="${#fields.hasErrors('price')}" th:errors="*{price}"
-				class="error">Price error</span> <input type="text"
+				class="error">Price error</span>
+				
+				<input type="text"
 				th:field="*{price}" class="form-control mb-4 col-4"
-				placeholder="Price"> <span
+				placeholder="Price">
+				 <span
 				th:if="${#fields.hasErrors('companyName')}"
-				th:errors="*{companyName}" class="error"></span> <input type="text"
+				th:errors="*{companyName}" class="error"></span>
+				 <input type="text"
 				th:field="*{companyName}" class="form-control mb-4 col-4"
-				placeholder="Cpmpany Name"> <span
+				placeholder="Cpmpany Name"> 
+				<span
 				th:if="${#fields.hasErrors('warranty')}" th:errors="*{warranty}"
-				class="error"></span> <input type="text" th:field="*{warranty}"
-				class="form-control mb-4 col-4" placeholder="Warranty"> <span
+				class="error"></span>
+				 <input type="text" th:field="*{warranty}"
+				class="form-control mb-4 col-4" placeholder="Warranty"> 
+				<span
 				th:if="${#fields.hasErrors('specs')}" th:errors="*{specs}"
-				class="error"></span> <input type="text" th:field="*{specs}"
+				class="error"></span>
+				 <input type="text" th:field="*{specs}"
 				class="form-control mb-4 col-4" placeholder="Specs">
 
 			<!-- for drop-down list to select the category -->
 			<span th:if="${#fields.hasErrors('categories')}"
-				th:errors="*{categories}" class="error"></span> <select
+				th:errors="*{categories}" class="error"></span> 
+				<select
 				th:field="*{categories}" class="form-control mb-4 col-2">
 				<option value="0">Select Category</option>
 				<option th:each="tempcategory:${categories}"
