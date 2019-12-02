@@ -41,6 +41,8 @@ public class Products{
 	@Column(name="product_specs")
 	private String specs;
 	
+	@NotNull(message = "don't leave this field empty")
+	@Size(min=1,message = "please! don't leave this field empty")
 	@Column(name="company_name")
 	private String companyName;
 	
@@ -51,6 +53,8 @@ public class Products{
 	@Column(name="price")
 	private Double price;
 	
+	@NotNull(message = "don't leave this field empty")
+	@Size(min=1,message = "please! don't leave this field empty")
 	@Column(name="warranty")
 	private String warranty;
 	
