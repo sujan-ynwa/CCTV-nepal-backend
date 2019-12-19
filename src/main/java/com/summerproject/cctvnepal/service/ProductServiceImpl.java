@@ -53,7 +53,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public List<Products> findByCategoriesName(String categories) {
+	public List<Products> findByCategoriesName(Categories categories) {
 		return productsRepo.findByCategories(categories);
 		
 	}

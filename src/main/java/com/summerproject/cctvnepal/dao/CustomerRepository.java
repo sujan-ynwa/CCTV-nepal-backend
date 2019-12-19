@@ -15,7 +15,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 	
 	
 	// this will find the data with the corresponding email passed
-	// the url will look something like this: http://localhost:8080/api/customers/search/findByEmail?email=thekopsfc.sd@gmail.com
+	// the url will look something like this: http://localhost:8080/api/customers/search/findByEmail?customer_email=thekopsfc.sd@gmail.com
 	// this is a custom method for JPA repository
-	Customer findByEmail(@Param("email") String email);
+	Customer findByEmail(@Param("customer_email") String email);
 }
