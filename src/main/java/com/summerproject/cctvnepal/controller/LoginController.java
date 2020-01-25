@@ -35,6 +35,16 @@ public class LoginController {
 		return "login";
 	}
 	
+	@GetMapping("/")
+	public String showlogin(Model theModel) {
+		
+		// first you need to add the "login" to the model so that it can act like a model attribute
+		theModel.addAttribute("login",new Admin());
+		
+		// login.html page opens
+		return "login";
+	}
+	
 	
 	@PostMapping("/showDashboard")
 		public String verifyLogin(@Valid @ModelAttribute("login") Admin theAdmin,BindingResult result ){
