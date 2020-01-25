@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import javax.naming.directory.SearchResult;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,15 @@ public class ProductsController {
 		
 		return "products/show-products";
 		}
+	
+	
+	@GetMapping("/search")
+	public String SearchResult(@RequestParam (value = "search", required = false) String name, Model theModel) {
+		
+		theModel.addAttribute("products",productService.findByProductName(name));
+		
+		return "products/show-products";
+	}
 	
 	
 	

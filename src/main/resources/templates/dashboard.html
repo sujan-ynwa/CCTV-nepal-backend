@@ -2,41 +2,96 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Dashboard</title>
-
 <!-- the css  -->
-<link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+<link rel="stylesheet" type="text/css" href="/css/sidebar.css"/>
+<link rel="stylesheet" type="text/css" href="/css/mainBody.css"/>
 </head>
 
 <body>
-	<div id="wrapper">
+
+	<div class="nav-bar" id="nav-bar">
+		<div>
+			<img   id="main_menu_button"  class="main_menu_button" 
+			 onclick="openSideMenu()" src="/images/dashboard/menu_icon.svg" 
+			 height="40" width="40" />
+		</div>
+		
+		<div class="user-display">
+			<div class="profile-image">
+				<img src="/images/dashboard/temp.jpg"  alt="profile_pic" />
+			</div>
+			
+			<div  class="user-name">
+				<p>Dashrath Adhikari</p>
+			</div>
+			<div class="more-options">
+				<img src="/images/dashboard/show_more.svg"/>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- for the body part -->
+	<div id="main-body" class="container">
+		<div class="customer-count">
+			<h3 >Total customers:</h3>
+			<div class="show-count"> 
+			<img src="/images/dashboard/customerIcon.svg">
+			<span th:text="${totalCustomers}"></span>
+			</div>
+		</div>
+		<div class="product-count">
+			<h3>Total Products:</h3>
+			<div class="show-count"> 
+			<img src="/images/dashboard/products_icon.svg">
+			<span th:text="${totalProducts}"></span>
+			</div>
+		</div>
+			
+		<div class="total-orders">
+			<h3>Total Orders:</h3>
+			<div class="show-count"> 
+			<img src="/images/dashboard/order_icon.svg">
+			<span th:text="${totalOrders}"></span>
+			</div>
+		</div>	
+		
+		<div class="total-sales">
+			<h3>Total items sold:</h3>
+			<div class="show-count"> 
+			<img src="/images/dashboard/sales_icon.svg">
+			<span th:text="${totalProducts}"></span>
+			</div>
+		</div>	
+		
+		
+		</div>
+
+
+	<div class="side-container" id="side_menu">
+		<div class="header-container">
+			<header class="header">CCTV NEPAL</header>
+			<img  class="menu-button" id="close_menu_button" onclick="closeSideMenu()" src="/images/dashboard/Menu.svg"/> 
+		</div>
+		<hr class="seperator">
 		<!-- for the side bar  -->
-		<div id="sidebar-wrapper">
-			<ul class="sidebar-nav">
-				<li class="companyname">CCTV Nepal</li>
-				<li><a href="/customer/listAll" target="frame_view">View
+		<div class="side-bar">
+			<ul>
+				<li><a href="/customer/listAll" target="frame_view" >View
 						Customers</a></li>
 				<li><a href="/categories/list" target="frame_view">Categories</a></li>
 				<li><a href="/products/list" target="frame_view">Products</a></li>
-			</ul>
-			<hr color="#ffffff">
-			<ul class="sidebar-nav">
-				<li><a href="/purchase/orders" target="frame_view">Purchase
+				<li><a href="/orders/listAll" target="frame_view">Purchase
 						order</a></li>
 				<li><a href="/feedbacks/listAll" target="frame_view">Customer
 						Feedback</a></li>
+				<li><a href="/login">Logout</a>
 			</ul>
 		</div>
-
-		<!--  for view part -->
-		<div id="main-view-wrapper">
-			<iframe class="frameview" name="frame_view"></iframe>
-		</div>
-
-
-
 	</div>
-	</div>
+	
+	
+<script  src="/scripts/menuSlider.js"> </script>
+	
 </body>
-
-
 </html>

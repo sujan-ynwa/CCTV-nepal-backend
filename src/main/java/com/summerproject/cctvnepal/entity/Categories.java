@@ -13,11 +13,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.NaturalId;
+
 
 @Entity
 @Table(name = "categories")
@@ -28,23 +29,21 @@ public class Categories implements Serializable{
 	@Column(name = "id")
 	private int id;
 
-	@NotNull
-	@Size(min = 1, message = "This filed should be filled")
+	@NotBlank(message = "Please fill this field")
 	@Column(name = "category_name")
 	private String categoryName;
 
-	
+	@NotEmpty(message="Please select a file")
 	@Column(name = "image_path")
 	private String imagePath;
 
-	@NotNull
-	@Size(min = 1, message = "This filed should be filled")
+	@NotBlank(message = "Please fill this field")
 	@Column(name = "category_code")
 	private String categoryCode;
 
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "categories", 
 			cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
-			CascadeType.REFRESH }) // it will look for categories in products table to create a relationship
+			CascadeType.REFRESH}) // it will look for categories in products table to create a relationship
 	private List<Products> products;
 
 	public List<Products> getProducts() {

@@ -1,5 +1,6 @@
 package com.summerproject.cctvnepal.controller;
 
+import java.io.Console;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -11,6 +12,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.hibernate.query.criteria.internal.expression.function.SubstringFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.summerproject.cctvnepal.entity.Categories;
 import com.summerproject.cctvnepal.service.CategoriesService;
 
+import ch.qos.logback.classic.net.SyslogAppender;
+
 @Controller
 @RequestMapping("/categories")
 public class CategoriesController {
@@ -39,7 +43,6 @@ public class CategoriesController {
 	
 	@GetMapping("/list")
 	public String listAll(Model theModel) {
-		
 		// populating the list with the data from database
 		List<Categories> categories = categoriesService.findAll();
 	
@@ -67,61 +70,194 @@ public class CategoriesController {
 	
 	@PostMapping("/insert")
 	public String insertCategory(@Valid @ModelAttribute("category") Categories theCategories,BindingResult result,
-								@RequestParam("file") MultipartFile file) throws IOException {
+								@RequestParam("file") MultipartFile file){
 		
 		
-		if(result.hasErrors()) {
-			return "categories/category-add-form";
-		}else{
-		
-		// this is for saving the image path into the database
-		String image_url =  "/images/categories/"+file.getOriginalFilename();
-		
-		// this is to create new file or update existing
-		String filePath =  "src/main/resources/static/images/categories/"+file.getOriginalFilename();
 		
 		
-		// this is for update
-		// if the file with same name already exists, delete it first then update
-		Path fileToDelete = Paths.get(filePath);
-		if(Files.exists(fileToDelete)) {
-			// deleting the existing file
-			Files.delete(fileToDelete);
+		/*
+		 * if(result.hasErrors()) { System.out.println("the result is"+
+		 * result.toString()); System.err.println("the value of category "+
+		 * theCategories.getCategoryCode()); System.err.println("the value of filename"+
+		 * file.getOriginalFilename()); return "categories/category-add-form"; }else{
+		 * 
+		 * // this is for saving the image path into the database String image_url =
+		 * "/images/categories/"+file.getOriginalFilename();
+		 * 
+		 * // this is to create new file or update existing String filePath =
+		 * "src/main/resources/static/images/categories/"+file.getOriginalFilename();
+		 * 
+		 * System.out.println("Printing the file name---------"+file.getOriginalFilename
+		 * ());
+		 * 
+		 * // this is for update // if the file with same name already exists, delete
+		 * ifirst then update Path fileToDelete = Paths.get(filePath);
+		 * if(Files.exists(fileToDelete)) { // deleting the existing file
+		 * Files.delete(fileToDelete);
+		 * 
+		 * // replacing it with the new file File convertFile = new File(filePath);
+		 * convertFile.createNewFile(); FileOutputStream fout = new
+		 * FileOutputStream(convertFile); fout.write(file.getBytes()); fout.close();
+		 * }else {
+		 * 
+		 * // if the file is not present the create a new one File convertFile = new
+		 * File(filePath); convertFile.createNewFile(); FileOutputStream fout = new
+		 * FileOutputStream(convertFile); fout.write(file.getBytes()); fout.close(); }
+		 * theCategories.setImagePath(image_url); // updating into the database
+		 * categoriesService.insertOrUpdate(theCategories);
+		 * 
+		 * return "redirect:/categories/list"; }
+		 */
+		 
+		
+		
+		  if(result.hasErrors()) { 
+			  if(updateDatabase(file, theCategories)) { return
+					 "redirect:/categories/list"; }
+			  else { 
+				  return "categories/category-add-form"; }
+		  }else {
+		  
+		  if(updateDatabase(file, theCategories)) {
+			  return "redirect:/categories/list";
+		  }else { return "categories/category-add-form"; } }
+		 	
+	}
+	
+	
+	public boolean updateDatabase(MultipartFile file, Categories categories) {
+		
+		try {
+		System.err.println("inside try");
+		System.err.println("inside try"+categories.getId());
+		System.err.println("inside try"+file.getOriginalFilename());
+		if(categories.getCategoryName().isEmpty() || categories.getCategoryCode().isEmpty()) {
+			System.err.println("inside first if");
+			if(categories.getImagePath() == null) {
+				 return false;
+			}else {
+				return false;
+			}
 			
-			// replacing it with the new file
-			File convertFile = new File(filePath);
-		      convertFile.createNewFile();
-		      FileOutputStream fout = new FileOutputStream(convertFile);
-		      fout.write(file.getBytes());
-		      fout.close();
+			
+		}else if(categories.getId() == 0 && file.getOriginalFilename().length()>0){
+			
+			System.err.println("inside  first else if");
+			// this is for saving the image path into the database
+			String image_url =  "/images/categories/"+file.getOriginalFilename();
+			
+			// this is to create new file or update existing
+			String filePath =  "src/main/resources/static/images/categories/"+file.getOriginalFilename();
+			
+			// this is for update
+			// if the file with same name already exists, delete it first then update
+			Path fileToDelete = Paths.get(filePath);
+			if(Files.exists(fileToDelete)) {
+				// deleting the existing file
+				Files.delete(fileToDelete);
+				
+				// replacing it with the new file
+				File convertFile = new File(filePath);
+			      convertFile.createNewFile();
+			      FileOutputStream fout = new FileOutputStream(convertFile);
+			      fout.write(file.getBytes());
+			      fout.close();
+			}else {
+				
+				// if the file is not present the create a new one
+				File convertFile = new File(filePath);
+			      convertFile.createNewFile();
+			      FileOutputStream fout = new FileOutputStream(convertFile);
+			      fout.write(file.getBytes());
+			      fout.close();
+			}
+		      categories.setImagePath(image_url);
+		      // updating  into the database
+		      categoriesService.insertOrUpdate(categories);
+		      return true;
+		      
+		}else if(categories.getId() != 0 && file.getOriginalFilename().isEmpty()) {
+			
+			System.err.println("inside  second else if");
+			
+			Categories  tempCategories = categoriesService.findById(categories.getId());
+			System.out.println(tempCategories);
+			
+			categories.setImagePath(tempCategories.getImagePath());
+			System.out.println(categories);
+			
+			categoriesService.insertOrUpdate(categories);
+			return true;
+			
+		}else if(categories.getId() != 0 && file.getOriginalFilename().length()>0) {
+			
+			System.err.println("inside  third else if");
+			
+			// this is for saving the image path into the database
+						String image_url =  "/images/categories/"+file.getOriginalFilename();
+						
+						// this is to create new file or update existing
+						String filePath =  "src/main/resources/static/images/categories/"+file.getOriginalFilename();
+						
+						// this is for update
+						// if the file with same name already exists, delete it first then update
+						Path fileToDelete = Paths.get(filePath);
+						if(Files.exists(fileToDelete)) {
+							// deleting the existing file
+							Files.delete(fileToDelete);
+							
+							// replacing it with the new file
+							File convertFile = new File(filePath);
+						      convertFile.createNewFile();
+						      FileOutputStream fout = new FileOutputStream(convertFile);
+						      fout.write(file.getBytes());
+						      fout.close();
+						}else {
+							
+							// if the file is not present the create a new one
+							File convertFile = new File(filePath);
+						      convertFile.createNewFile();
+						      FileOutputStream fout = new FileOutputStream(convertFile);
+						      fout.write(file.getBytes());
+						      fout.close();
+						}
+					      categories.setImagePath(image_url);
+					      // updating  into the database
+					      categoriesService.insertOrUpdate(categories);
+					      return true;
+			
 		}else {
-			
-			// if the file is not present the create a new one
-			File convertFile = new File(filePath);
-		      convertFile.createNewFile();
-		      FileOutputStream fout = new FileOutputStream(convertFile);
-		      fout.write(file.getBytes());
-		      fout.close();
+			System.err.println("inside  else ");
+			return false;
 		}
-	      theCategories.setImagePath(image_url);
-	      // updating  into the database
-	      categoriesService.insertOrUpdate(theCategories);
-	      
-	      return "redirect:/categories/list";	
+		
+		}catch (Exception e) {
+			System.err.println("inside  catch ");
+			System.err.println(e);
+			return false;
 		}
 	}
 	
 	
+	
+	
+	
 	// for update form
 	@GetMapping("/showUpdateFrom/{categoryId}")
-	public String showUpdateFrom(@PathVariable("categoryId") int categoryId, Model theModel) {
+	public String showUpdateFrom(@PathVariable("categoryId") int categoryId, Model theModel) throws Exception {
 		
 		// get the object from the database
 		Categories categories = categoriesService.findById(categoryId);
+		
+		String imageUrl = categories.getImagePath();	
+		//String temp= "/images/categories/";
+		
+	//	String image = imageUrl.substring(temp.length(),imageUrl.length());
+		
 			
 		// setting up the model attribute to pre-populate form
 		theModel.addAttribute("category",categories); // model value should be same as the retrieved object in the form
-		
+		theModel.addAttribute("imageUrl",imageUrl);
 		
 		//sending the populated form
 		return "categories/category-add-form";

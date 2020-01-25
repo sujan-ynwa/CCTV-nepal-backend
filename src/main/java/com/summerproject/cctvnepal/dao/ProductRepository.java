@@ -14,6 +14,9 @@ import com.summerproject.cctvnepal.entity.Products;
 public interface ProductRepository extends JpaRepository<Products, Integer> {
 	
 	//http://localhost:8080/api/product/search/findByCategories?code=CAM
+	
 	public List<Products> findByCategories(@Param("code")Categories categories);
+	 
+	List<Products> findByProductName(String name);
 	//public List<Products> findByCategoryCode(@Param("code")String categories);
 }

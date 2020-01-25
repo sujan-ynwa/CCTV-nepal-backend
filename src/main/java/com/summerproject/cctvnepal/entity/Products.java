@@ -14,8 +14,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Range;
@@ -31,18 +36,17 @@ public class Products{
 	@Column(name="id")
 	private int id;
 	
-	@NotNull(message = "don't leave this field empty")
-	@Size(min=1,message = "please! don't leave this field empty")
+	@NotBlank(message = "*required")
+	@Size(min=5,message = "Product Name must have least 5 character")
 	@Column(name="product_name")
 	private String productName;
 	
-	@NotNull(message = "don't leave this field empty")
-	@Size(min=1,message = "please! don't leave this field empty")
+	@NotBlank(message = "*required")
+	@Size(min=20,message = "description too short should be at least 20 characters")
 	@Column(name="product_specs")
 	private String specs;
 	
-	@NotNull(message = "don't leave this field empty")
-	@Size(min=1,message = "please! don't leave this field empty")
+	@NotBlank(message = "*required")
 	@Column(name="company_name")
 	private String companyName;
 	
@@ -50,13 +54,15 @@ public class Products{
 	private String imagePath;
 	
 	@NotNull(message = "price cannot be empty")
+	@PositiveOrZero(message = "price cannot be Negative")
+	//@Digits(integer = 10,fraction = 3,message = "price too large")
 	@Column(name="price")
-	private Double price;
+	private double price;
 	
-	@NotNull(message = "don't leave this field empty")
-	@Size(min=1,message = "please! don't leave this field empty")
+	@NotEmpty(message = "don't leave this field empty")
 	@Column(name="warranty")
 	private String warranty;
+	
 	
 	@Column(name="available")
 	private boolean available;
@@ -64,7 +70,7 @@ public class Products{
 	 
 	@ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.MERGE,
 	CascadeType.DETACH,CascadeType.REFRESH}) // everyThing except delete
-	@JoinColumn(referencedColumnName = "category_code",name="category_code",insertable = true) // this shit took me fucking 4 days
+	@JoinColumn(referencedColumnName = "category_code",name="category_code") // this shit took me fucking 4 days
 	@NotNull(message = "Please select a category")
 	private Categories categories;
 	
@@ -73,7 +79,7 @@ public class Products{
 	}
 	
 	// don't change the pattern in which parameter are passed
-	public Products(String productName,String companyName, String imagePath, Double price,String specs,String warranty,boolean available) {
+	public Products(String productName,String companyName, String imagePath, double price,String specs,String warranty,boolean available) {
 		this.productName = productName;
 		this.specs = specs;
 		this.imagePath = imagePath;
@@ -147,12 +153,12 @@ public class Products{
 	}
 
 
-	public Double getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
 
-	public void setPrice(Double price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 

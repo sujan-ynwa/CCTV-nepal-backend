@@ -11,6 +11,8 @@ public interface ProductService {
 	
 	public Products findById(int productId);
 	
+	public List<Products> findByProductName(String name);
+	
 	public void insertOrUpdate(Products products);
 	
 	public void deleteById(int productId);

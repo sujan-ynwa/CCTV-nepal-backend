@@ -35,4 +35,9 @@ public class CartServiceImpl implements CartService {
 		cartRepo.save(cart);
 	}
 
+	
+	  @Override public int deleteByEmail(String email) {
+	  
+	  return cartRepo.deleteByEmail(email); }
+	 
 }

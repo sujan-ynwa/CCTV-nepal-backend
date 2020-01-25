@@ -22,6 +22,13 @@
 		<!-- Button to add new Category  -->
 		<a th:href="@{/products/showProductForm}"
 			class="btn btn-primary btn-sm mb-3">Add new Product</a>
+			
+		<!-- for the search functionality  -->	
+		<form action="#" th:action="@{/products/search}" th:object="${products}" method="get" class ="form-inline">
+			<input type="text" th:value="${search}" name="search" placeholder="search" class="form-control mb-3 col-3">
+			<button type="submit" class="btn btn-primary  mb-3">Search</button>		
+		</form>
+		
 
 		<!-- A table to show list of category  -->
 		<table class="table table-bordered table-stripped mb-5">

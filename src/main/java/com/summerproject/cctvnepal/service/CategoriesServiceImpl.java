@@ -37,6 +37,9 @@ public class CategoriesServiceImpl implements CategoriesService {
 		return categories;
 		
 	}
+	
+	
+	
 
 	@Override
 	public void insertOrUpdate(Categories theCategories) {
@@ -48,6 +51,12 @@ public class CategoriesServiceImpl implements CategoriesService {
 	public void deleteCategory(int theId) {
 		categroiesRepo.deleteById(theId);
 		
+	}
+
+	@Override
+	public Categories findByCategoryCode(String code) {
+
+		return categroiesRepo.findByCategoryCode(code);
 	}
 
 	

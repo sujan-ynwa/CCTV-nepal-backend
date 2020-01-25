@@ -7,32 +7,33 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=yes">
 <!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
+
+<link rel="stylesheet" href="/css/login.css" >
 
 </head>
 
 <body>
-	<div class="container mt-4" >
-		<h3 align="center">Admin login</h3>
+	<div class="card-container" >
+		<header class="login-title">Admin login</header>
 		
 		<!--  Form to add new category -->
 		
-		<form action="#" th:action="@{/verifyLogin}"
-			th:object="${login}" method="POST" >
+		<form  th:action="@{/showDashboard}"
+			th:object="${login}" method="POST" 
+			class="form-box">
 			
-			<div align="center">
+			<span th:if="${#fields.hasErrors('adminName')}"
+				th:errors="*{adminName}" class="error">Name error</span>
+			
 				<input type="text" th:field="*{adminName}"
-				class="form-control mb-4 col-4" placeholder="Username">
+				class="text-input" placeholder="Username">
 
 			
 				<input type="password" th:field="*{password}"
-				class="form-control mb-4 col-4" placeholder="Password"> 
+				class="text-input" placeholder="Password"> 
 			
-				<button type="submit" class="btn btn-info col-2">Login</button>
-			</div>
+			
+				<button type="submit" class="login-button">Login</button>
 		</form>
 	</div>
 </body>

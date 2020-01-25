@@ -25,7 +25,7 @@ public class LoginController {
 	@Autowired
 	AdminService adminService;
 	
-	@GetMapping("/loginForm")
+	@GetMapping("/login")
 	public String showForm(Model theModel) {
 		
 		// first you need to add the "login" to the model so that it can act like a model attribute
@@ -36,7 +36,7 @@ public class LoginController {
 	}
 	
 	
-	@PostMapping("/verifyLogin")
+	@PostMapping("/showDashboard")
 		public String verifyLogin(@Valid @ModelAttribute("login") Admin theAdmin,BindingResult result ){
 		
 		System.out.println(adminService.findByPassword(theAdmin.getPassword()));
@@ -48,7 +48,7 @@ public class LoginController {
 		  }else {
 			  
 			// take to dashboard.html page
-			  return "dashboard";  
+			  return "redirect:/showDashboard";  
 		  }
 		 
 			

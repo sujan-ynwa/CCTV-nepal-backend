@@ -28,6 +28,11 @@ public class CustomerController {
 		// get the employee from the database
 		List<Customer> thecustomers = customerService.findAll();
 		
+		String numberOfCustomers= String.valueOf(thecustomers.size());
+		
+		System.out.println("mo pf customers"+numberOfCustomers);
+		
+		theModel.addAttribute("numbers",numberOfCustomers);
 		theModel.addAttribute("customers",thecustomers);
 		
 		return "show-customer-list";

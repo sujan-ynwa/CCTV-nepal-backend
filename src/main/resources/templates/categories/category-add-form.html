@@ -37,9 +37,13 @@
 			<input type="text" th:field="*{categoryCode}"
 				class="form-control mb-4 col-4" placeholder="Category Code">
 				
-			
-				<input type="file" name="file" id="file">
-				
+			<span th:if="${#fields.hasErrors('imagePath')}"
+				th:errors="*{imagePath}" class="error">File error</span>	
+			<div onchange="loadFile(event)">
+				<input   type="file" accept="image/*"  name="file" />
+				<!-- imageClass is inside error.css -->
+				<img class="imageClass" id="demoImage"  th:src="${imageUrl}" />
+			</div>	
 			<button type="submit" class="btn btn-info col-2">Add</button>
 		</form>
 
@@ -48,7 +52,7 @@
 	</div>
 
 
-
+<script type="text/javascript" src="/scripts/uploadImage.js"></script>
 </body>
 
 

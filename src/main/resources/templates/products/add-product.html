@@ -43,7 +43,7 @@
 				th:errors="*{companyName}" class="error"></span>
 				 <input type="text"
 				th:field="*{companyName}" class="form-control mb-4 col-4"
-				placeholder="Cpmpany Name"> 
+				placeholder="Company Name"> 
 				<span
 				th:if="${#fields.hasErrors('warranty')}" th:errors="*{warranty}"
 				class="error"></span>
@@ -52,8 +52,8 @@
 				<span
 				th:if="${#fields.hasErrors('specs')}" th:errors="*{specs}"
 				class="error"></span>
-				 <input type="text" th:field="*{specs}"
-				class="form-control mb-4 col-4" placeholder="Specs">
+				<textarea  th:field="*{specs}"
+				class="form-control mb-4 col-4" rows="5" placeholder="Specs"></textarea>
 
 			<!-- for drop-down list to select the category -->
 			<span th:if="${#fields.hasErrors('categories')}"

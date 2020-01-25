@@ -19,6 +19,9 @@ public class Feedback {
 	@Column(name="customer_email")
 	private String customerEmail;
 	
+	@Column(name = "customer_name")
+	private String customerName; 
+	
 	@Column(name="title")
 	private String title;
 	
@@ -28,8 +31,9 @@ public class Feedback {
 	public Feedback() {
 		}
 	
-	public Feedback(String customerEmail, String title, String feedback) {
+	public Feedback(String customerEmail,String customerName, String title, String feedback) {
 		this.customerEmail = customerEmail;
+		this.customerName = customerName;
 		this.title = title;
 		this.feedback = feedback;
 	}
@@ -40,6 +44,15 @@ public class Feedback {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 
 	public String getCustomerEmail() {

@@ -23,6 +23,9 @@ public class Customer {
 	@Column(name="last_name")
 	private String lastName;
 	
+	@Column(name="contact_number")
+	private String contactNumber;
+	
 	@Column(name="email")
 	private String email;
 	
@@ -34,11 +37,12 @@ public class Customer {
 		
 	}
 	
-	public Customer(String firstName, String lastName, String email, String password) {
+	public Customer(String firstName, String lastName,String contactNumber, String email, String password) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
+		this.contactNumber = contactNumber;
 	}
 
 	public int getId() {
@@ -49,6 +53,8 @@ public class Customer {
 		this.id = id;
 	}
 
+	
+	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -63,6 +69,14 @@ public class Customer {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	
+	public String getContactNumber() {
+		return contactNumber;
+	}
+
+	public void setContactNumber(String contactNumber) {
+		this.contactNumber = contactNumber;
 	}
 
 	public String getEmail() {
@@ -86,15 +100,5 @@ public class Customer {
 		return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
 				+ ", password=" + password + "]";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 }

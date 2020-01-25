@@ -2,3 +2,8 @@
 	color: red;
 	font-style: italic;
 }
+
+.imageClass{
+	border:none;
+	background:#ffffff;
+}

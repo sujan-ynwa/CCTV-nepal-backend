@@ -13,6 +13,8 @@ public interface CategoriesService {
 	
 	public Categories findById(int theId);
 	
+	public Categories findByCategoryCode(String code);
+	
 	public void insertOrUpdate(Categories theCategories);
 	
 	public void deleteCategory(int theId);
