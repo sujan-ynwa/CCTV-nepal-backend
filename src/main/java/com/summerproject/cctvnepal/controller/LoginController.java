@@ -58,7 +58,6 @@ public class LoginController {
 		  }else {
 			  
 			// take to dashboard.html page
-			  System.out.println("now showing the dashboard");
 			  return "redirect:/showDashboard";  
 		  }
 		 
