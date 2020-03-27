@@ -32,7 +32,7 @@ public class FeedbackController {
 		
 		theModel.addAttribute("feedback",feedbacks);
 		
-		return "/feedback/feedback-list";
+		return "feedback/feedback-list";
 		
 	}
 	
