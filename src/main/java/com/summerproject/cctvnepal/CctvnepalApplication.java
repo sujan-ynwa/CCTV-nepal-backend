@@ -4,12 +4,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
 @SpringBootApplication
 @EnableJpaRepositories
+@ComponentScan(basePackages={"com.summerproject"})
 public class CctvnepalApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CctvnepalApplication.class, args);
