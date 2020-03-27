@@ -58,7 +58,7 @@ public class LoginController {
 		  }else {
 			  
 			// take to dashboard.html page
-			  return "redirect:/showDashboard";  
+			  return "redirect:showDashboard";  
 		  }
 		 
 			
