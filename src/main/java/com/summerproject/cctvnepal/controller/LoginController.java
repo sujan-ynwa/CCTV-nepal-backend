@@ -46,7 +46,7 @@ public class LoginController {
 	}
 	
 	
-	@PostMapping("/showDashboard")
+	@PostMapping("/login")
 		public String verifyLogin(@Valid @ModelAttribute("login") Admin theAdmin,BindingResult result ){
 		
 		System.out.println(adminService.findByPassword(theAdmin.getPassword()));
@@ -58,6 +58,7 @@ public class LoginController {
 		  }else {
 			  
 			// take to dashboard.html page
+			  System.out.println("now showing the dashboard");
 			  return "redirect:/showDashboard";  
 		  }
 		 
