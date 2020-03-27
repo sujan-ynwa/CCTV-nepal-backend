@@ -1,0 +1,64 @@
+<!DOCTYPE>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+
+<body>
+
+<!-- for importing the css file in otherfiles  -->
+	<div th:fragment="import-css">
+<!-- Required meta tags -->
+	<link rel="stylesheet" type="text/css" href="/css/sidebar.css"/>
+	<link rel="stylesheet" type="text/css" href="/css/mainBody.css"/>
+	</div>
+
+<!-- top nav-bar-->
+	<div th:fragment="top-nav" class="nav-bar" id="nav-bar">
+		<div>
+			<img   id="main_menu_button"  class="main_menu_button" 
+			 onclick="openSideMenu()" src="/images/dashboard/menu_icon.svg" 
+			 height="40" width="40" />
+		</div>
+		
+		<div class="user-display">
+			<div class="profile-image">
+				<img src="/images/dashboard/temp.jpg"  alt="profile_pic" />
+			</div>
+			
+			<div  class="user-name">
+				<p>Lorem ipsum</p>
+			</div>
+			<div class="more-options">
+				<img src="/images/dashboard/show_more.svg"/>
+			</div>
+		</div>
+	</div>
+	
+<!-- side menu -->
+	<div  th:fragment="side-nav" class="side-container" id="side_menu">
+		<div class="header-container">
+			<header class="header"><a href="/showDashboard">CCTV NEPAL</a></header>
+			<img  class="menu-button" id="close_menu_button"
+			 onclick="closeSideMenu()" src="/images/dashboard/Menu.svg"/> 
+		</div>
+		<hr class="seperator">
+		<!-- for the side bar  -->
+		<div class="side-bar">
+			<ul>
+				<li><a href="/customer/listAll">View Customers</a></li>
+				<li><a href="/categories/list">Categories</a></li>
+				<li><a href="/products/list" >Products</a></li>
+				<li><a href="/orders/listAll" >Purchase order</a></li>
+				<li><a href="/feedbacks/listAll">Customer Feedback</a></li>
+				<li><a href="/login">Logout</a>
+			</ul>
+		</div>
+	</div>
+	 
+		
+	<div th:fragment="script-files">	
+		<script  src="/scripts/menuSlider.js"> </script>
+	</div>
+</body>
+</html>

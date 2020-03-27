@@ -1,0 +1,67 @@
+<!DOCTYPE>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Home page</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"  href="/css/tables.css"/>
+
+</head>
+<body>
+	
+	<!-- importing the header and side menu form another file called common.html -->
+	<div th:replace="common :: import-css"></div>
+	<div th:replace="common :: top-nav"></div>
+	<div th:replace="common :: side-nav"></div>
+
+	<div id="main-body" class="body-wrapper">
+	<div class="heading">
+		<header>Product Orders</header>
+	</div>
+		
+		<div class="show-tables">
+		<table th:with="i=68">
+			<thead>
+				<tr>
+					<th>S.N</th>
+					<th>Customer Email</th>
+					<th>Customer Name</th>
+					<th>Contact Number</th>
+					<th>Product Name</th>
+					<th>Company Name</th>
+					<th>Price</th>
+					<th>Quantity</th>
+					<th>Ordered On</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!--  value is for printing the sn numbers  -->
+				<tr th:each="temporders,value:${orders}">
+					<td th:text="${value.index+1}" />
+					<td th:text="${temporders.customerEmail}"/>
+					<td th:text="${temporders.contactName}"/>
+					<td th:text="${temporders.contactNumber}"/>
+					<td th:text="${temporders.productName}" />
+					<td th:text="${temporders.companyName}" />
+					<td th:text="${temporders.price}" />
+					<td th:text="${temporders.quantity}"/>
+					<td th:text="${temporders.purchaseDate}"/>
+
+					<!--  for deleting  -->
+					<!-- if not inside any other folder inside templates then just mapping should same method mapping -->
+				</tr>
+			</tbody>
+		</table>
+		</div>
+	</div>
+	
+<!-- importing the script file  -->	
+	<div th:replace="common:: script-files"></div>
+
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+<svg id="Menu" xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ffffff;
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <path id="Menu-2" data-name="Menu" class="cls-1" d="M0,42V36H27.5v6ZM0,24V18H44v6ZM0,6V0H44V6Z" transform="translate(0 1)"/>
+  <rect id="Rectangle_1446" data-name="Rectangle 1446" class="cls-2" width="44" height="44"/>
+</svg>
