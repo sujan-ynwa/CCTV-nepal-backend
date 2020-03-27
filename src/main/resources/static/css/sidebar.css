@@ -24,6 +24,11 @@ body{
 	display:inline;
 }
 
+.header a{
+	text-decoration: none;
+	color: #ffffff;
+}
+
 .menu-button{
 	align-self:center;
 	padding-right:5px;
@@ -92,10 +97,12 @@ body{
 /* for the navigation bar that is on the top of the screen*/
 /* for the navigation bar that is on the top of the screen*/
 .nav-bar{
+	position: fixed;
 	display:flex;
 	justify-content:space-between;
 	align-items: center;
 	height:50px;
+	width:100%;
 	flex-direction:row;
 	background:#ffffff;
 	color:#00000;

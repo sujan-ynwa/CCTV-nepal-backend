@@ -16,7 +16,7 @@ public class CctvnepalApplication {
 	}
 	
 	
-	// defining the bean to show custom message
+	// defining the bean to show custom error message
 	@Bean
 	public MessageSource messageSource() {
 	    ReloadableResourceBundleMessageSource messageSource

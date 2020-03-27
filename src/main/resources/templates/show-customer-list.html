@@ -1,25 +1,32 @@
 <!DOCTYPE>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Home page</title>
+<title>Customer List</title>
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
-
+<link rel="stylesheet" type="text/css" href="/css/tables.css">
 </head>
 <body>
 
-	<div class="container">
-		<h2>Customer Management</h2>
-		<table class="table table-bordered table-stripped mb-5" th:with="i=68">
-			<thead class="thead-dark">
+
+<!-- importing the header and side menu form another file called common.html -->
+	<div th:replace="common :: import-css"></div>
+	<div th:replace="common :: top-nav"></div>
+	<div th:replace="common :: side-nav"></div>
+	
+<div id="main-body" class="body-wrapper">
+	
+	<div class="heading">
+		<header>Customer List</header>
+	</div>
+
+	<div class="show-tables">
+		<table  th:with="i=68">
+			<thead>
 				<tr>
 					<th>S.N</th>
 					<th>First name</th>
@@ -40,12 +47,16 @@
 
 					<!--  for deleting  -->
 					<!-- if not inside any other folder inside templates then just mapping should same method mapping -->
-					<td><a th:href="@{'delete/' + ${tempcustomer.id}}"
-						class="btn btn-danger btn-sm mb-2">Delete</a>
+					<td><a 
+					class="delete-button" th:href="@{'delete/' + ${tempcustomer.id}}">Delete</a>
 				</tr>
 			</tbody>
 		</table>
 	</div>
-</body>
+	</div>
 
+	<!-- importing the script file  -->	
+	<div th:replace="common:: script-files"></div>
+	
+</body>
 </html>

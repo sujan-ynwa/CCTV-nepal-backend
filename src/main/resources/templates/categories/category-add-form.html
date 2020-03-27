@@ -7,18 +7,27 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=yes">
 <!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
+<link rel="stylesheet" href="/css/form.css">
+
+<!--for the body-wrapper,button  and header class -->
+<link rel="stylesheet" href="/css/tables.css"> 
 <link rel="stylesheet" type="text/css" href="/css/errors.css">
 </head>
 <body>
-	<div class="container">
-		<h2>Create new Category</h2>
+	<!-- importing the header and side menu form another file called common.html -->
+	<div th:replace="common :: import-css"></div>
+	<div th:replace="common :: top-nav"></div>
+	<div th:replace="common :: side-nav"></div>
 
+
+
+	<div  id ="main-body" class="body-wrapper">
+	<div class="heading">
+		<header>Create new Category</header>
+	</div>
 		<!--  Form to add new category -->
-		<form action="#" th:action="@{/categories/insert}"
+		
+		<form action="#" th:action="@{/categories/insert}" class="form-wrapper"
 			th:object="${category}" method="POST" enctype="multipart/form-data">
 
 			<!-- this is for the update so that the categories id will be sent along the form  -->
@@ -28,31 +37,37 @@
 			<!-- for name -->
 			<span th:if="${#fields.hasErrors('categoryName')}"
 				th:errors="*{categoryName}" class="error">Name error</span>
+			
 		    <input type="text" th:field="*{categoryName}"
-				class="form-control mb-4 col-4" placeholder="Category Name">
+				 placeholder="Category Name">
 
 			<!-- for category code  -->
 			<span th:if="${#fields.hasErrors('categoryCode')}"
 				th:errors="*{categoryCode}" class="error">Code error</span> 
+			
 			<input type="text" th:field="*{categoryCode}"
-				class="form-control mb-4 col-4" placeholder="Category Code">
+				placeholder="Category Code">
 				
 			<span th:if="${#fields.hasErrors('imagePath')}"
-				th:errors="*{imagePath}" class="error">File error</span>	
-			<div onchange="loadFile(event)">
+				th:errors="*{imagePath}" class="error">File error</span>
+					
+			<div onchange="loadFile(event)" class="file-upload">
 				<input   type="file" accept="image/*"  name="file" />
 				<!-- imageClass is inside error.css -->
 				<img class="imageClass" id="demoImage"  th:src="${imageUrl}" />
 			</div>	
-			<button type="submit" class="btn btn-info col-2">Add</button>
+			<button type="submit" class="add-button">Add</button>
 		</form>
 
+		<div class="back-link">
 		<a th:href="@{/categories/list}">Go back to list</a>
-
+		</div>
 	</div>
 
 
 <script type="text/javascript" src="/scripts/uploadImage.js"></script>
+<!-- importing the script file  -->	
+	<div th:replace="common:: script-files"></div>
 </body>
 
 

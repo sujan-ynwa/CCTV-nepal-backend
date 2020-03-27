@@ -8,24 +8,32 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/css/tables.css">
 
 </head>
 <body>
 
-	<div class="container">
-		<h2>Category Management</h2>
+	<!-- importing the header and side menu form another file called common.html -->
+	<div th:replace="common :: import-css"></div>
+	<div th:replace="common :: top-nav"></div>
+	<div th:replace="common :: side-nav"></div>
+	<!-- importing the script file  -->	
+	<div th:replace="common:: script-files"></div>
+	
 
-		<!-- Button to add new Category  -->
-		<a th:href="@{/categories/addCategoryForm}"
-			class="btn btn-primary btn-sm mb-3">Create New</a>
-
+	<div  id ="main-body" class="body-wrapper">
+		<div class="heading">
+		<header>Categories</header>
+		</div>
+		
+		<div class="create-button">
+		<a th:href="@{/categories/addCategoryForm}">Create New</a>
+		</div>
+			
 		<!-- A table to show list of category  -->
-		<table class="table table-bordered table-stripped mb-5">
-			<thead class="thead-dark">
+		<div class="show-tables">
+		<table>
+			<thead>
 				<tr>
 					<th>S.N</th>
 					<th>Category</th>
@@ -45,14 +53,18 @@
 
 					<!--  for deleting  -->
 					<td><a th:href="@{'/categories/delete/' + ${tempcategory.id}}"
-						class="btn btn-danger btn-sm mb-2">Delete</a> <!--For updating  -->
+						class="delete-button">Delete</a> <!--For updating  -->
 						<a th:href="@{'/categories/showUpdateFrom/'+${tempcategory.id}}"
-						th:name="categoryId" class="btn btn-info btn-sm mb-2">Update </a>
+						th:name="categoryId" class="update-button">Update </a>
 					</td>
 				</tr>
 			</tbody>
 		</table>
+		</div>
 	</div>
+	
+<!-- importing the script file  -->	
+	<div th:replace="common:: script-files"></div>
 </body>
 
 </html>

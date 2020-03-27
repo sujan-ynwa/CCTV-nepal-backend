@@ -14,7 +14,9 @@
 
 <body>
 	<div class="card-container" >
-		<header class="login-title">Admin login</header>
+		<div class="login-title">
+		<header >Admin login</header>
+		</div>
 		
 		<!--  Form to add new category -->
 		
@@ -25,10 +27,12 @@
 			<span th:if="${#fields.hasErrors('adminName')}"
 				th:errors="*{adminName}" class="error">Name error</span>
 			
+				<label>Username/Email</label>
 				<input type="text" th:field="*{adminName}"
 				class="text-input" placeholder="Username">
 
 			
+				<label>Password</label>
 				<input type="password" th:field="*{password}"
 				class="text-input" placeholder="Password"> 
 			

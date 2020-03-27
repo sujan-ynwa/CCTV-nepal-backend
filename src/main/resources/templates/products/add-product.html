@@ -7,59 +7,63 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=yes">
 <!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
+<link rel="stylesheet" href="/css/form.css">
+<link rel="stylesheet" href="/css/tables.css">
 <link rel="stylesheet" type="text/css" href="/css/toogleButton.css">
 <link rel="stylesheet" type="text/css" href="/css/errors.css">
 </head>
 <body>
-	<div class="container">
-		<h2>Add new Product</h2>
 
+	<!-- importing the header and side menu form another file called common.html -->
+	<div th:replace="common :: import-css"></div>
+	<div th:replace="common :: top-nav"></div>
+	<div th:replace="common :: side-nav"></div>
+	
+	
+	<div id="main-body" class="body-wrapper">
+	<div class="heading">
+		<header>Add new Product</header>
+	</div>
 		<!--  Form to add new category -->
-		<form action="#" th:action="@{/products/insert}"
+		<form action="#" th:action="@{/products/insert}" class="form-wrapper"
 			th:object="${products}" method="POST" enctype="multipart/form-data">
 
 			<!-- this is for the update so that the categories id will be sent along the form  -->
 			<input type="hidden" th:field="*{id}"> 
+			
 			<span
 				th:if="${#fields.hasErrors('productName')}"
 				th:errors="*{productName}" class="error">Name error</span> 
 				<input
-				type="text" th:field="*{productName}"
-				class="form-control mb-4 col-4" placeholder="Name"> 
+				type="text" th:field="*{productName}" placeholder="Name"> 
 				
 				<span
 				th:if="${#fields.hasErrors('price')}" th:errors="*{price}"
 				class="error">Price error</span>
 				
-				<input type="text"
-				th:field="*{price}" class="form-control mb-4 col-4"
-				placeholder="Price">
+				<input type="text" th:field="*{price}" placeholder="Price">
+				
+				
 				 <span
 				th:if="${#fields.hasErrors('companyName')}"
 				th:errors="*{companyName}" class="error"></span>
-				 <input type="text"
-				th:field="*{companyName}" class="form-control mb-4 col-4"
-				placeholder="Company Name"> 
+				 <input type="text" th:field="*{companyName}" placeholder="Company Name"> 
+				 
 				<span
 				th:if="${#fields.hasErrors('warranty')}" th:errors="*{warranty}"
 				class="error"></span>
-				 <input type="text" th:field="*{warranty}"
-				class="form-control mb-4 col-4" placeholder="Warranty"> 
+				 <input type="text" th:field="*{warranty}" placeholder="Warranty"> 
+				 
 				<span
 				th:if="${#fields.hasErrors('specs')}" th:errors="*{specs}"
 				class="error"></span>
-				<textarea  th:field="*{specs}"
-				class="form-control mb-4 col-4" rows="5" placeholder="Specs"></textarea>
+				<textarea  th:field="*{specs}" rows="5" placeholder="Specs"></textarea>
 
 			<!-- for drop-down list to select the category -->
 			<span th:if="${#fields.hasErrors('categories')}"
 				th:errors="*{categories}" class="error"></span> 
 				<select
-				th:field="*{categories}" class="form-control mb-4 col-2">
+				th:field="*{categories}" >
 				<option value="0">Select Category</option>
 				<option th:each="tempcategory:${categories}"
 					th:text="${tempcategory.categoryCode}"
@@ -67,27 +71,31 @@
 			</select>
 
 			<!--  for checkbox -->
-			<h6>Availability</h6>
-			<label class="switch"> <!-- if button is checked  --> <input
+			<div class="switch-wrapper">
+			<p>Availability</p>
+			<label class="switch"> <!-- if button is checked  --> 
+			<input
 				type="checkbox" name="availability" th:checked="*{available}">
 				<span class="slider round"></span> <!-- if the button is left unchecked  -->
 				<input type="hidden" name="availability" value="0">
-			</label></br>
-			</br>
+			</label>
+			</div>
 
 			<!-- for uploading the file  -->
 			<input type="file" name="file" id="file"> <span
 				th:if="${#fields.hasErrors('imagePath')}" th:errors="*{imagePath}"
 				class="error">image path error</span> </br>
 			</br>
-			<button type="submit" class="btn btn-info col-2">Add</button>
+			<button type="submit" class="add-button">Add</button>
 		</form>
+		<div class="back-link">
 		<a th:href="@{/products/list}">Go back to list</a>
-
+		</div>
 	</div>
 
 
-
+<!-- importing the script file  -->	
+	<div th:replace="common:: script-files"></div>
 </body>
 
 
