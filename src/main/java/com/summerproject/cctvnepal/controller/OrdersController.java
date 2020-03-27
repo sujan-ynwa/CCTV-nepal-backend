@@ -26,7 +26,7 @@ public class OrdersController {
 		
 		theModel.addAttribute("orders",orders);
 		
-		return "/orders/show-order-list";
+		return "orders/show-order-list";
 	}
 	
 }
