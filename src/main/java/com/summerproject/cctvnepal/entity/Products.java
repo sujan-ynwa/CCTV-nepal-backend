@@ -65,7 +65,7 @@ public class Products{
 	
 	
 	@Column(name="available")
-	private boolean available;
+	private boolean Available;
 	
 	 
 	@ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.MERGE,
@@ -79,14 +79,14 @@ public class Products{
 	}
 	
 	// don't change the pattern in which parameter are passed
-	public Products(String productName,String companyName, String imagePath, double price,String specs,String warranty,boolean available) {
+	public Products(String productName,String companyName, String imagePath, double price,String specs,String warranty,boolean Available) {
 		this.productName = productName;
 		this.specs = specs;
 		this.imagePath = imagePath;
 		this.price = price;
 		this.companyName = companyName;
 		this.warranty= warranty;
-		this.available = available;
+		this.Available = Available;
 	}
 	
 	public String getCompanyName() {
@@ -106,11 +106,11 @@ public class Products{
 	}
 
 	public boolean isAvailable() {
-		return available;
+		return Available;
 	}
 
-	public void setAvailable(boolean available) {
-		this.available = available;
+	public void setAvailable(boolean Available) {
+		this.Available = Available;
 	}
 
 	public int getId() {

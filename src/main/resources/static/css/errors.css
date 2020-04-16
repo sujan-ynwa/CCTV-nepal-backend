@@ -6,4 +6,6 @@
 .imageClass{
 	border:none;
 	background:#ffffff;
+	height: 200px;
+	width:200px;
 }
